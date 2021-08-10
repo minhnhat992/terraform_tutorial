@@ -8,10 +8,10 @@ terraform {
 }
 
 provider "google" {
-  credentials = file("creds/nyt-mbcompdev-dev-9728dd97d09d.json")
-  project     = "nyt-mbcompdev-dev"
-  region      = "us-east1"
-  zone        = "us-east1-b"
+  credentials = file(var.credentials_file)
+  project     = var.project
+  region      = var.region
+  zone        = var.zone
 }
 # create a VPC network
 resource "google_compute_network" "vpc_network" {
@@ -21,7 +21,7 @@ resource "google_compute_network" "vpc_network" {
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
   machine_type = "f1-micro"
-  tags = ["web","dev"]
+  tags         = ["web", "dev"]
   boot_disk {
     initialize_params {
       image = "cos-cloud/cos-stable"
