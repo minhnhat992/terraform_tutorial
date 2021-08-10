@@ -1,25 +1,35 @@
 terraform {
   required_providers {
-    docker = {
-      source = "kreuzwerker/docker"
-      version = "~> 2.13.0"
+    google = {
+      source  = "hashicorp/google"
+      version = "3.5.0"
     }
   }
 }
 
-provider "docker" {}
-
-resource "docker_image" "nginx" {
-  name = "nginx:latest"
-  keep_locally = false
+provider "google" {
+  credentials = file("creds/nyt-mbcompdev-dev-9728dd97d09d.json")
+  project     = "nyt-mbcompdev-dev"
+  region      = "us-east1"
+  zone        = "us-east1-b"
 }
-
-resource "docker_container" "nginx" {
-  image = docker_image.nginx.latest
-  name = "tutorial"
-  ports {
-    internal = 80
-    external = 8000
+# create a VPC network
+resource "google_compute_network" "vpc_network" {
+  name = "terraform-network"
+}
+# create a VM instance, using the VPC network as the background
+resource "google_compute_instance" "vm_instance" {
+  name         = "terraform-instance"
+  machine_type = "f1-micro"
+  tags = ["web","dev"]
+  boot_disk {
+    initialize_params {
+      image = "cos-cloud/cos-stable"
+    }
+  }
+  network_interface {
+    network = google_compute_network.vpc_network.name
+    access_config {}
   }
 }
 
