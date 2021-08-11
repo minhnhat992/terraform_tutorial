@@ -2,7 +2,7 @@ kind: pipeline
 name: terraform_drone
 
 steps:
-  - name: set up GCP
+  - name: set_up_GCP
     image: jmccann/drone-terraform:5
     actions:
       - validate
