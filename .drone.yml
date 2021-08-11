@@ -1,0 +1,19 @@
+pipeline:
+  terraform:
+    image: jmccann/drone-terraform:5
+    actions:
+      - validate
+      - plan
+      - apply
+    vars:
+      credentials_file = GCC_SERVICE_ACCOUNT
+      project = "nyt-mbcompdev-dev"
+      region = "us-east1"
+      zone = "us-east1-b"
+    enviroment:
+      GCC_SERVICE_ACCOUNT:
+        from_secret: gcp_service_acc_creds
+  when:
+    event: push
+    branch:
+      - master
