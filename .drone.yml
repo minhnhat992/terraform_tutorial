@@ -9,13 +9,11 @@ steps:
       - plan
       - apply
     vars:
-      credentials_file = GCC_SERVICE_ACCOUNT
       project = "nyt-mbcompdev-dev"
       region = "us-east1"
       zone = "us-east1-b"
     enviroment:
-      GCC_SERVICE_ACCOUNT:
-        from_secret: gcp_service_acc_creds
+      credentials_file: ${gcp_service_acc_creds}
     when:
       event: push
       branch:
