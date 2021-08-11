@@ -16,7 +16,7 @@ steps:
     enviroment:
       GCC_SERVICE_ACCOUNT:
         from_secret: gcp_service_acc_creds
-  when:
-    event: push
-    branch:
-      - master
+    when:
+      event: push
+      branch:
+        - master
