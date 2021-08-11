@@ -5,8 +5,8 @@ steps:
   - name: set_up_GCP
     image: jmccann/drone-terraform:5
     actions:
-      - validate
-      - plan
+#      - validate
+#      - plan
       - apply
     vars:
       project = "nyt-mbcompdev-dev"
