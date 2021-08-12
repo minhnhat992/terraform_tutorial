@@ -8,7 +8,7 @@ steps:
       - python3 ./create_json.py
     enviroment:
       DRONE_GCC_SECRET_DEV:
-        from_secrets: gcp_service_acc_creds
+        from_secret: gcp_service_acc_creds
 
   - name: set_up_GCP
     image: jmccann/drone-terraform:latest
