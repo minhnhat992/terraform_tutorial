@@ -14,8 +14,8 @@ steps:
         region: "us-east1"
         zone: "us-east1-b"
       secrets:
-        - source: gcp_service_acc_creds
-          target: $CREDS
+        - source: $CREDS
+          target: credentials_file
     enviroment:
       CREDS:
         from_secrets: gcp_service_acc_creds
