@@ -3,10 +3,10 @@ name: terraform_drone
 
 steps:
   - name: set_up_GCP
-    image: jmccann/drone-terraform:5
+    image: jmccann/drone-terraform:8.3-1.0.2
     actions:
-#      - validate
-#      - plan
+      - validate
+      - plan
       - apply
     vars:
       project = "nyt-mbcompdev-dev"
