@@ -9,17 +9,21 @@ steps:
         from_secrets: gcp_service_acc_creds
       commands:
         - echo $CREDS > /tmp/CREDS.json
-    when:
-      event: push
-      branch:
-        - master
+    settings:
+      actions:
+        - validate
+        - plan
+      vars:
+        project: "nyt-mbcompdev-dev"
+        region: "us-east1"
+        zone: "us-east1-b"
+        credentials_file: /tmp/CREDS.json
+
 
   - name: set_up_GCP
     image: jmccann/drone-terraform:latest
     settings:
       actions:
-        - validate
-        - plan
         - apply
       vars:
         project: "nyt-mbcompdev-dev"
