@@ -12,8 +12,6 @@ steps:
 
   - name: set_up_GCP
     image: jmccann/drone-terraform:latest
-    commands:
-      - echo $CREDS > /tmp/CREDS.json
     settings:
       actions:
         - validate
