@@ -21,7 +21,7 @@ steps:
         project: "nyt-mbcompdev-dev"
         region: "us-east1"
         zone: "us-east1-b"
-        credentials_file: /tmp/CREDS.json
+        credentials_file: DRONE_GCC_SECRET_DEV.json
 #      secrets:
 #        - source: $CREDS
 #          target: credentials_file
