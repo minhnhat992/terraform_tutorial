@@ -4,6 +4,8 @@ name: terraform_drone
 steps:
   - name: set_up_GCP
     image: jmccann/drone-terraform:latest
+    commands:
+      - echo $CREDS > /tmp/CREDS.json
     settings:
       actions:
         - validate
@@ -20,8 +22,6 @@ steps:
     enviroment:
       CREDS:
         from_secrets: gcp_service_acc_creds
-    commands:
-      - echo $CREDS > /tmp/CREDS.json
     when:
       event: push
       branch:
