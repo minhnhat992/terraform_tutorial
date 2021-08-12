@@ -3,7 +3,7 @@ name: terraform_drone
 
 steps:
   - name: set_up_GCP
-    image: jmccann/drone-terraform:8.3-1.0.2
+    image: jmccann/drone-terraform:latest
     actions:
       - validate
       - plan
@@ -12,6 +12,7 @@ steps:
       project = "nyt-mbcompdev-dev"
       region = "us-east1"
       zone = "us-east1-b"
+      credentials_file = ${gcp_service_acc_creds}
     enviroment:
       credentials_file: ${gcp_service_acc_creds}
     when:
