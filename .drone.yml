@@ -4,17 +4,20 @@ name: terraform_drone
 steps:
   - name: set_up_GCP
     image: jmccann/drone-terraform:latest
-    actions:
-      - validate
-      - apply
     settings:
+      actions:
+        - validate
+        - apply
       vars:
         project: "nyt-mbcompdev-dev"
         region: "us-east1"
         zone: "us-east1-b"
       secrets:
         - source: gcp_service_acc_creds
-          target: credentials_file
+          target: $CREDS
+    enviroment:
+      CREDS:
+        from_secrets: gcp_service_acc_creds
     when:
       event: push
       branch:
