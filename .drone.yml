@@ -7,13 +7,14 @@ steps:
     actions:
       - validate
       - apply
-    vars:
-      project: "nyt-mbcompdev-dev"
-      region: "us-east1"
-      zone: "us-east1-b"
-    secrets:
-      - source: gcp_service_acc_creds
-        target: credentials_file
+    settings:
+      vars:
+        project: "nyt-mbcompdev-dev"
+        region: "us-east1"
+        zone: "us-east1-b"
+      secrets:
+        - source: gcp_service_acc_creds
+          target: credentials_file
     when:
       event: push
       branch:
