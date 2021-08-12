@@ -12,9 +12,9 @@ steps:
         project: "nyt-mbcompdev-dev"
         region: "us-east1"
         zone: "us-east1-b"
-      secrets:
-        - source: gcp_service_acc_creds
-          target: $CREDS
+#      secrets:
+#        - source: gcp_service_acc_creds
+#          target: $CREDS
     enviroment:
       CREDS:
         from_secrets: gcp_service_acc_creds
