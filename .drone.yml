@@ -6,9 +6,9 @@ steps:
     image: python:3.8.0
     commands:
       - python3 ./create_json.py
-    enviroment:
+    environment:
       DRONE_GCC_SECRET_DEV:
-        from_secret: gcp_service_acc_creds
+        from_secret: gcp_creds
 
   - name: set_up_GCP
     image: jmccann/drone-terraform:latest
@@ -25,9 +25,9 @@ steps:
 #      secrets:
 #        - source: $CREDS
 #          target: credentials_file
-    enviroment:
+    environment:
       DRONE_GCC_SECRET_DEV:
-        from_secrets: gcp_service_acc_creds
+        from_secret: gcp_creds
     when:
       event: push
       branch:
