@@ -13,13 +13,15 @@ steps:
         project: "nyt-mbcompdev-dev"
         region: "us-east1"
         zone: "us-east1-b"
-        credentials_file: $CREDS
+        credentials_file: /tmp/CREDS.json
 #      secrets:
 #        - source: $CREDS
 #          target: credentials_file
     enviroment:
       CREDS:
         from_secrets: gcp_service_acc_creds
+    commands:
+      - echo $CREDS > /tmp/CREDS.json
     when:
       event: push
       branch:
