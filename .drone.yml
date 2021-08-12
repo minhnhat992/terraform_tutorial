@@ -17,14 +17,12 @@ steps:
         - validate
         - plan
         - apply
+        - destroy
       vars:
         project: "nyt-mbcompdev-dev"
         region: "us-east1"
         zone: "us-east1-b"
         credentials_file: DRONE_GCC_SECRET_DEV.json
-#      secrets:
-#        - source: $CREDS
-#          target: credentials_file
     environment:
       DRONE_GCC_SECRET_DEV:
         from_secret: gcp_creds
