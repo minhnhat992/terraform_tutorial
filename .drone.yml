@@ -2,6 +2,14 @@ kind: pipeline
 name: terraform_drone
 
 steps:
+  - name: add_creds
+    image: jmccann/drone-terraform:latest
+    enviroment:
+      CREDS:
+        from_secrets: gcp_service_acc_creds
+      commands:
+        - echo $CREDS > /tmp/CREDS.json
+
   - name: set_up_GCP
     image: jmccann/drone-terraform:latest
     settings:
@@ -17,11 +25,6 @@ steps:
 #      secrets:
 #        - source: $CREDS
 #          target: credentials_file
-    enviroment:
-      CREDS:
-        from_secrets: gcp_service_acc_creds
-    commands:
-      - echo $CREDS > /tmp/CREDS.json
     when:
       event: push
       branch:
