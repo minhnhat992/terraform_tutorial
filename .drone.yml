@@ -6,7 +6,6 @@ steps:
     image: jmccann/drone-terraform:latest
     actions:
       - validate
-      - plan
       - apply
     vars:
       project: "nyt-mbcompdev-dev"
